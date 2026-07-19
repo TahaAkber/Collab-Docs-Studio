@@ -1,0 +1,141 @@
+:root {
+  font-family: Inter, system-ui, sans-serif;
+  color: #122033;
+  background: #f4f7fb;
+}
+
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background: #eef3f9;
+}
+button,
+input,
+select {
+  font: inherit;
+}
+
+.app-shell {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  min-height: 100vh;
+}
+
+.side-panel {
+  background: #0f172a;
+  color: white;
+  padding: 20px;
+}
+
+.brand-box h1 {
+  margin: 0 0 20px;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.7;
+  font-size: 12px;
+}
+
+.field-label {
+  display: block;
+  margin-bottom: 12px;
+}
+
+.field-label select,
+.meta-bar input,
+.action-card select,
+.action-card input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 6px;
+  border-radius: 8px;
+  border: 1px solid #c9d5e2;
+}
+
+.primary-btn,
+.toolbar button,
+.action-card button {
+  border: none;
+  border-radius: 8px;
+  padding: 10px 14px;
+  cursor: pointer;
+  background: #2f6fed;
+  color: white;
+}
+
+.toolbar button {
+  background: #dbe8ff;
+  color: #18355f;
+}
+
+.small {
+  padding: 8px 12px;
+}
+
+.doc-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.doc-card {
+  text-align: left;
+  display: grid;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+  padding: 12px;
+  border-radius: 10px;
+}
+
+.doc-card.active {
+  background: #1d4ed8;
+}
+
+.editor-panel {
+  padding: 24px;
+}
+
+.toolbar {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.meta-bar {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.editor-surface {
+  min-height: 360px;
+  background: white;
+  border-radius: 14px;
+  border: 1px solid #d5dfeb;
+  padding: 18px;
+  outline: none;
+}
+
+.action-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.action-card {
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid #d5dfeb;
+  display: grid;
+  gap: 10px;
+}

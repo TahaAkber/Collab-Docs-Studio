@@ -1,0 +1,38 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         String      @id @default(uuid())
+  email      String      @unique
+  name       String
+  ownedDocs  Document[]  @relation("OwnedDocuments")
+  sharedDocs Document[]  @relation("SharedDocuments")
+}
+
+model Document {
+  id           String       @id @default(uuid())
+  title        String
+  content      String
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+  ownerId      String
+  owner        User         @relation("OwnedDocuments", fields: [ownerId], references: [id])
+  sharedWith   User[]       @relation("SharedDocuments")
+  attachments  Attachment[]
+}
+
+model Attachment {
+  id         String    @id @default(uuid())
+  filename   String
+  mimeType   String
+  size       Int
+  content    String
+  documentId String
+  document   Document  @relation(fields: [documentId], references: [id])
+}
