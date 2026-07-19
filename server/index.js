@@ -1,8 +1,13 @@
 import express from "express";
 import cors from "cors";
 import multer from "multer";
+import path from "path";
+import { fileURLToPath } from "url";
 import { PrismaClient } from "@prisma/client";
-import { randomUUID } from "crypto";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const clientDistPath = path.resolve(__dirname, "../dist");
 
 const app = express();
 const prisma = new PrismaClient();
@@ -10,6 +15,7 @@ const upload = multer({ storage: multer.memoryStorage() });
 
 app.use(cors());
 app.use(express.json({ limit: "2mb" }));
+app.use(express.static(clientDistPath));
 
 const seededUsers = [
   { id: "user-1", email: "maya@acme.dev", name: "Maya" },
@@ -210,6 +216,14 @@ app.get("/api/documents/:id", async (req, res) => {
   }
 
   res.json(document);
+});
+
+app.use((req, res, next) => {
+  if (req.path.startsWith("/api")) {
+    return next();
+  }
+
+  res.sendFile(path.join(clientDistPath, "index.html"));
 });
 
 const port = process.env.PORT || 3001;
