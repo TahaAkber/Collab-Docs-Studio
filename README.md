@@ -2,6 +2,17 @@
 
 A small full-stack document workspace built with React, Express, Prisma, and SQLite. Users can create an account, edit rich-text documents, import text files, and share editable drafts with other registered users.
 
+**Live product:** https://web-production-c5c4e.up.railway.app
+
+## Submission documents
+
+- [Submission contents](SUBMISSION.md)
+- [Architecture note](ARCHITECTURE.md)
+- [AI workflow note](AI_WORKFLOW.md)
+- [Walkthrough script](WALKTHROUGH_SCRIPT.md)
+- Walkthrough video: `walkthrough-video-final.mp4` (4 minutes 50 seconds)
+- Final uploaded link: `walkthrough-video-url.txt`
+
 ## Features
 
 - Email/password signup and login with salted password hashes and server-side sessions
@@ -9,7 +20,7 @@ A small full-stack document workspace built with React, Express, Prisma, and SQL
 - Create, rename, save, reopen, and edit documents
 - Bold, italic, underline, headings, body text, and ordered/unordered lists
 - Import `.txt` and `.md` files into a draft (maximum 1 MB)
-- Owner-only sharing with a visible “Owned by you” / “Shared by…” distinction
+- Owner-only sharing with a visible "Owned by you" / "Shared by..." distinction
 - SQLite persistence for documents, formatting, sessions, sharing, and import records
 - Responsive UI, validation, useful error messages, and automated API tests
 
