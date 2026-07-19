@@ -8,31 +8,42 @@ datasource db {
 }
 
 model User {
-  id         String      @id @default(uuid())
-  email      String      @unique
-  name       String
-  ownedDocs  Document[]  @relation("OwnedDocuments")
-  sharedDocs Document[]  @relation("SharedDocuments")
+  id           String     @id @default(uuid())
+  email        String     @unique
+  name         String
+  passwordHash String     @default("")
+  ownedDocs    Document[] @relation("OwnedDocuments")
+  sessions     Session[]
+  sharedDocs   Document[] @relation("SharedDocuments")
+}
+
+model Session {
+  id        String   @id @default(uuid())
+  tokenHash String   @unique
+  expiresAt DateTime
+  userId    String
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Document {
-  id           String       @id @default(uuid())
-  title        String
-  content      String
-  createdAt    DateTime     @default(now())
-  updatedAt    DateTime     @updatedAt
-  ownerId      String
-  owner        User         @relation("OwnedDocuments", fields: [ownerId], references: [id])
-  sharedWith   User[]       @relation("SharedDocuments")
-  attachments  Attachment[]
+  id          String       @id @default(uuid())
+  title       String
+  content     String
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  ownerId     String
+  attachments Attachment[]
+  owner       User         @relation("OwnedDocuments", fields: [ownerId], references: [id])
+  sharedWith  User[]       @relation("SharedDocuments")
 }
 
 model Attachment {
-  id         String    @id @default(uuid())
+  id         String   @id @default(uuid())
   filename   String
   mimeType   String
   size       Int
   content    String
   documentId String
-  document   Document  @relation(fields: [documentId], references: [id])
+  document   Document @relation(fields: [documentId], references: [id])
 }

@@ -2,5 +2,6 @@ node_modules/
 .env
 /dist/
 client/dist/
+dev-server*.log
 server/prisma/dev.db
 server/prisma/dev.db-journal
