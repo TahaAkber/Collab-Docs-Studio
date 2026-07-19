@@ -58,6 +58,10 @@ SQLite makes local review simple. The included Render Blueprint runs schema sync
 
 No public deployment URL is committed because it is created in the owner's Render account.
 
+### Railway
+
+The repository also includes `railway.json`. Deploy the GitHub repository as a Railway service, generate a public domain, then attach a volume at `/data`. At startup, the app detects `RAILWAY_VOLUME_MOUNT_PATH`, stores SQLite at `/data/collab-docs.db`, synchronizes the schema, seeds demo users, and starts the server. Without a volume, Railway's container filesystem is ephemeral and application data can be lost on redeploy.
+
 ## AI-native workflow note
 
 OpenAI Codex was used to audit the existing application against the requirements, implement the authentication/authorization flow, strengthen validation, expand tests, and review deployment documentation. AI materially accelerated cross-layer changes spanning the Prisma schema, Express routes, React UI, and test suite.
